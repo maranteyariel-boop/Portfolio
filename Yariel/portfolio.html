@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yariel Marante — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F0F0F;--steel:#2D4A6B;--steel-mid:#4A7AA0;--steel-light:#8FBBE0;
+  --cream:#F4F1EC;--white:#FAFAF8;--rule:rgba(15,15,15,0.08);
+  --bauhaus:'Josefin Sans',sans-serif;
+  --sf:-apple-system,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  --t:0.4s cubic-bezier(0.22,1,0.36,1);
+}
+[data-theme="light"]{
+  --bg-1:var(--white);--bg-2:var(--cream);--bg-3:var(--white);
+  --bg-card:#FFFFFF;--bg-nav:rgba(250,250,248,0.88);
+  --text-1:var(--ink);--text-2:rgba(15,15,15,0.55);--text-3:rgba(15,15,15,0.35);
+  --label:var(--steel-mid);--border:var(--rule);--border-s:rgba(15,15,15,0.12);
+  --card-sh:0 1px 16px rgba(0,0,0,0.05),0 0 0 1px rgba(0,0,0,0.04);
+  --card-sh-h:0 12px 40px rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.06);
+  --tag-bg:var(--cream);--tag-text:var(--steel);--input-bg:#FFFFFF;
+  --geo-op:0.06;--cta-bg:var(--ink);--cta-text:var(--white);
+  --footer-bg:var(--ink);--footer-text:rgba(255,255,255,0.5);--footer-text-2:rgba(255,255,255,0.25);
+}
+[data-theme="dark"]{
+  --bg-1:#0F0F0F;--bg-2:#161619;--bg-3:#111114;
+  --bg-card:#1C1C20;--bg-nav:rgba(15,15,15,0.92);
+  --text-1:#F0EDE6;--text-2:rgba(255,255,255,0.52);--text-3:rgba(255,255,255,0.24);
+  --label:var(--steel-light);--border:rgba(255,255,255,0.07);--border-s:rgba(255,255,255,0.12);
+  --card-sh:0 1px 16px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.05);
+  --card-sh-h:0 12px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.1);
+  --tag-bg:rgba(45,74,107,0.3);--tag-text:var(--steel-light);--input-bg:#1A1A1E;
+  --geo-op:0.04;--cta-bg:var(--white);--cta-text:var(--ink);
+  --footer-bg:#0A0A0A;--footer-text:rgba(255,255,255,0.45);--footer-text-2:rgba(255,255,255,0.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{font-family:var(--sf);font-weight:300;background:var(--bg-1);color:var(--text-1);-webkit-font-smoothing:antialiased;line-height:1.6;transition:background var(--t),color var(--t);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg-nav);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background var(--t),border-color var(--t)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;gap:4px}
+.nav-logo-word{font-family:var(--bauhaus);font-weight:700;font-size:22px;letter-spacing:-0.01em;line-height:0.9;color:var(--text-1);transition:color var(--t)}
+.nav-logo-bar{width:100%;height:2.5px;background:var(--steel);display:block;transition:background var(--t)}
+[data-theme="dark"] .nav-logo-bar{background:var(--steel-light)}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-family:var(--sf);font-size:13px;font-weight:300;color:var(--text-2);text-decoration:none;letter-spacing:0.01em;transition:color 0.25s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--steel-mid);transition:width 0.3s ease}
+.nav-links a:hover{color:var(--text-1)}
+.nav-links a:hover::after{width:100%}
+.nav-controls{display:flex;align-items:center;gap:6px}
+.nav-btn{background:transparent;border:1px solid var(--border-s);color:var(--text-2);font-family:var(--bauhaus);font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;padding:7px 14px;border-radius:980px;cursor:pointer;transition:all 0.25s ease;display:flex;align-items:center;gap:7px}
+.nav-btn:hover{color:var(--text-1);border-color:var(--steel-mid);background:rgba(74,122,160,0.08)}
+.nav-btn svg{width:14px;height:14px;flex-shrink:0}
+.mobile-toggle{display:none;background:none;border:none;color:var(--text-1);cursor:pointer;padding:8px}
+.mobile-toggle svg{width:20px;height:20px}
+
+/* COMMON */
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+.lbl{font-family:var(--bauhaus);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--label);transition:color var(--t);margin-bottom:20px}
+.lbl::before{content:'✦';margin-right:10px;font-size:7px}
+.section-accent{display:block;width:32px;height:2px;background:var(--steel-mid);margin-bottom:16px;transition:width 0.4s ease}
+.fade-up.visible .section-accent{width:48px}
+.blue-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--steel-mid);margin-right:8px;vertical-align:middle;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+
+/* Bauhaus decorative strip */
+.bauhaus-strip{display:flex;gap:0;height:4px;width:100%;overflow:hidden;margin:0}
+.bauhaus-strip span{flex:1;transition:flex 0.6s ease}
+.bauhaus-strip .bs-1{background:var(--steel)}
+.bauhaus-strip .bs-2{background:var(--steel-mid)}
+.bauhaus-strip .bs-3{background:var(--steel-light)}
+.bauhaus-strip .bs-4{background:var(--cream)}
+[data-theme="dark"] .bauhaus-strip .bs-4{background:rgba(255,255,255,0.08)}
+
+/* HERO */
+#inicio{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden;background:var(--bg-1);transition:background var(--t)}
+.hero-geo{position:absolute;right:-80px;top:50%;transform:translateY(-50%);opacity:var(--geo-op);transition:opacity var(--t)}
+.hero-content{position:relative;z-index:1;max-width:100%;padding:80px 0}
+.hero-name{font-family:var(--bauhaus);font-weight:700;font-size:clamp(52px,9vw,120px);line-height:0.88;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:4px;transition:color var(--t)}
+.hero-name .name-accent{color:var(--steel);transition:color var(--t)}
+[data-theme="dark"] .hero-name .name-accent{color:var(--steel-light)}
+.hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.hero-role{font-family:var(--bauhaus);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--steel-mid);display:flex;align-items:center;gap:0;transition:color var(--t)}
+[data-theme="dark"] .hero-role{color:var(--steel-light)}
+.hero-avail{display:flex;align-items:center;gap:6px;font-family:var(--sf);font-size:11px;font-weight:300;color:var(--text-2);background:rgba(74,122,160,0.08);padding:5px 14px;border-radius:980px;border:1px solid rgba(74,122,160,0.15)}
+.hero-avail .avail-dot{width:6px;height:6px;border-radius:50%;background:#4CAF50;animation:pulse 2s ease-in-out infinite}
+
+/* Service pills */
+.hero-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.service-pill{font-family:var(--bauhaus);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-2);border:1px solid var(--border-s);padding:8px 18px;border-radius:980px;transition:all 0.3s ease;cursor:default}
+.service-pill:hover{border-color:var(--steel-mid);color:var(--steel);background:rgba(74,122,160,0.06)}
+[data-theme="dark"] .service-pill:hover{color:var(--steel-light);border-color:var(--steel-light)}
+
+.hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;border-top:1px solid var(--border);padding-top:36px}
+.hero-tagline{font-family:var(--bauhaus);font-weight:700;font-size:clamp(26px,3.2vw,42px);line-height:1.05;letter-spacing:-0.01em;color:var(--text-1);transition:color var(--t)}
+.hero-tagline .accent{color:var(--steel);transition:color var(--t)}
+[data-theme="dark"] .hero-tagline .accent{color:var(--steel-light)}
+.hero-right{display:flex;flex-direction:column;gap:24px}
+.hero-description{font-family:var(--sf);font-size:15px;font-weight:300;line-height:1.75;color:var(--text-2);max-width:440px;transition:color var(--t)}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--bauhaus);font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--cta-text);background:var(--cta-bg);padding:16px 32px;border-radius:980px;text-decoration:none;transition:all 0.3s ease;align-self:flex-start}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(45,74,107,0.25)}
+.hero-cta svg{width:14px;height:14px;transition:transform 0.3s ease}
+.hero-cta:hover svg{transform:translateX(4px)}
+.hero-scroll{position:absolute;bottom:40px;left:48px;display:flex;align-items:center;gap:12px;color:var(--text-3);animation:float 2.8s ease-in-out infinite}
+.hero-scroll span{font-family:var(--bauhaus);font-size:8px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase}
+.hero-scroll-line{width:40px;height:1px;background:var(--text-3)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* PROJECTS */
+#proyectos{padding:120px 0;position:relative;background:var(--bg-2);transition:background var(--t)}
+.projects-title{font-family:var(--bauhaus);font-weight:700;font-size:clamp(36px,5vw,64px);letter-spacing:-0.01em;line-height:0.92;color:var(--text-1);margin-bottom:56px;transition:color var(--t)}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project-card{background:var(--bg-card);overflow:hidden;box-shadow:var(--card-sh);transition:all var(--t);cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid var(--border);border-radius:20px}
+.project-card:hover{transform:translateY(-6px);box-shadow:var(--card-sh-h)}
+.project-card:hover .project-image-wrap img{transform:scale(1.05)}
+.project-card:hover .project-link{gap:12px;color:var(--steel)}
+[data-theme="dark"] .project-card:hover .project-link{color:var(--steel-light)}
+.project-image-wrap{aspect-ratio:4/3.5;overflow:hidden;background:var(--bg-2);position:relative}
+.project-image-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s cubic-bezier(0.22,1,0.36,1)}
+.placeholder-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--text-3)}
+.placeholder-icon svg{width:44px;height:44px;opacity:0.4}
+.project-info{padding:24px 22px;flex:1;display:flex;flex-direction:column}
+.project-number{font-family:var(--bauhaus);font-size:9px;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--steel-mid);margin-bottom:10px}
+.project-name{font-family:var(--bauhaus);font-weight:700;font-size:21px;letter-spacing:-0.01em;line-height:1.05;margin-bottom:10px;color:var(--text-1);transition:color var(--t)}
+.project-desc{font-family:var(--sf);font-size:13px;font-weight:300;line-height:1.7;color:var(--text-2);margin-bottom:18px;flex:1}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.project-tag{font-family:var(--bauhaus);font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--tag-text);background:var(--tag-bg);padding:5px 12px;border-radius:980px;transition:all var(--t)}
+.project-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--bauhaus);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-2);text-decoration:none;transition:gap 0.3s ease,color 0.3s ease}
+.project-link svg{width:12px;height:12px}
+
+/* ABOUT */
+#sobre-mi{padding:120px 0;position:relative;overflow:hidden;background:var(--bg-3);transition:background var(--t)}
+.about-geo{position:absolute;left:-120px;bottom:-80px;opacity:var(--geo-op);transition:opacity var(--t)}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:72px;align-items:start;position:relative;z-index:1}
+.about-image-wrap{aspect-ratio:3/4;overflow:hidden;background:var(--bg-2);position:relative;border:1px solid var(--border);border-radius:20px}
+.about-image-wrap img{width:100%;height:100%;object-fit:cover}
+.about-title{font-family:var(--bauhaus);font-weight:700;font-size:clamp(32px,4vw,48px);letter-spacing:-0.01em;line-height:0.95;margin-bottom:28px;color:var(--text-1);transition:color var(--t)}
+.about-text{font-family:var(--sf);font-size:15px;font-weight:300;line-height:1.75;color:var(--text-2);margin-bottom:16px;transition:color var(--t)}
+.about-text em{font-style:italic;color:var(--steel-mid)}
+[data-theme="dark"] .about-text em{color:var(--steel-light)}
+
+/* Bauhaus fun facts */
+.fun-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.fun-fact{text-align:center;padding:16px 8px}
+.fun-fact-icon{width:48px;height:48px;margin:0 auto 12px;position:relative}
+.fun-fact-icon svg{width:48px;height:48px}
+.fun-fact:hover .fun-fact-icon{transform:rotate(8deg) scale(1.05)}
+.fun-fact-icon{transition:transform 0.3s ease}
+.fun-fact-title{font-family:var(--bauhaus);font-size:11px;font-weight:700;letter-spacing:0.04em;color:var(--text-1);margin-bottom:4px;transition:color var(--t)}
+.fun-fact-desc{font-family:var(--sf);font-size:11px;font-weight:300;color:var(--text-2);line-height:1.5}
+
+/* Highlights */
+.about-highlights{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:28px}
+.highlight-number{font-family:var(--bauhaus);font-weight:700;font-size:24px;letter-spacing:-0.01em;color:var(--steel);line-height:1;margin-bottom:6px;transition:color var(--t)}
+[data-theme="dark"] .highlight-number{color:var(--steel-light)}
+.highlight-label{font-family:var(--bauhaus);font-size:8px;font-weight:400;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3)}
+
+/* CV dropdown */
+.cv-wrap{position:relative;display:inline-block}
+.cv-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--bauhaus);font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--cta-text);background:var(--cta-bg);padding:14px 28px;border-radius:980px;border:none;cursor:pointer;transition:all 0.3s ease}
+.cv-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(45,74,107,0.2)}
+.cv-btn svg{width:14px;height:14px;transition:transform 0.3s ease}
+.cv-wrap.open .cv-btn svg{transform:rotate(180deg)}
+.cv-dropdown{position:absolute;top:calc(100% + 8px);left:0;min-width:220px;background:var(--bg-card);border:1px solid var(--border-s);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,0.12);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.25s ease;z-index:10;overflow:hidden}
+.cv-wrap.open .cv-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+[data-theme="dark"] .cv-dropdown{box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.cv-dropdown a{display:flex;align-items:center;gap:10px;padding:14px 20px;font-family:var(--sf);font-size:13px;font-weight:300;color:var(--text-1);text-decoration:none;transition:background 0.2s ease}
+.cv-dropdown a:hover{background:rgba(74,122,160,0.08)}
+.cv-dropdown a svg{width:16px;height:16px;color:var(--steel-mid);flex-shrink:0}
+.cv-dropdown a+a{border-top:1px solid var(--border)}
+
+/* CONTACT */
+#contacto{padding:120px 0 80px;background:var(--bg-2);position:relative;overflow:hidden;transition:background var(--t)}
+.contact-wrapper{max-width:600px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.contact-title{font-family:var(--bauhaus);font-weight:700;font-size:clamp(36px,5vw,64px);letter-spacing:-0.01em;line-height:0.92;margin-bottom:16px;color:var(--text-1);transition:color var(--t)}
+.contact-subtitle{font-family:var(--sf);font-size:15px;font-weight:300;color:var(--text-2);margin-bottom:48px;line-height:1.7}
+.contact-form{display:flex;flex-direction:column;gap:14px;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group label{display:block;font-family:var(--bauhaus);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--label);margin-bottom:6px;transition:color var(--t)}
+.form-group input,.form-group textarea{width:100%;font-family:var(--sf);font-size:14px;font-weight:300;padding:14px 16px;background:var(--input-bg);border:1px solid var(--border-s);border-radius:12px;color:var(--text-1);transition:all 0.25s ease;outline:none}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-3);font-weight:300}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--steel-mid);box-shadow:0 0 0 3px rgba(74,122,160,0.12)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;font-family:var(--bauhaus);font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--cta-text);background:var(--cta-bg);padding:18px 32px;border:none;border-radius:980px;cursor:pointer;transition:all 0.3s ease;margin-top:8px}
+.form-submit:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15)}
+.form-submit svg{width:14px;height:14px}
+
+/* UNIFIED FOOTER */
+footer{background:var(--footer-bg);padding:0;position:relative;overflow:hidden;transition:background var(--t)}
+.footer-strip{height:4px;display:flex}
+.footer-strip span{flex:1}
+.footer-strip .fs-1{background:var(--steel)}.footer-strip .fs-2{background:var(--steel-mid)}.footer-strip .fs-3{background:var(--steel-light)}.footer-strip .fs-4{background:rgba(255,255,255,0.08)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:64px 48px 40px;position:relative;z-index:1}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo-word{font-family:var(--bauhaus);font-weight:700;font-size:36px;letter-spacing:-0.01em;line-height:0.88;color:white}
+.footer-logo-bar{width:72px;height:3px;background:var(--steel-light);margin-top:8px;display:block}
+.footer-tagline{font-family:var(--sf);font-size:14px;font-weight:300;color:var(--footer-text);margin-top:16px;max-width:320px;line-height:1.65}
+.footer-col-title{font-family:var(--bauhaus);font-size:9px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--steel-light);margin-bottom:20px}
+.footer-link{display:flex;align-items:center;gap:8px;font-family:var(--sf);font-size:13px;font-weight:300;color:var(--footer-text);text-decoration:none;margin-bottom:12px;transition:color 0.25s ease}
+.footer-link:hover{color:white}
+.footer-link svg{width:15px;height:15px;flex-shrink:0}
+.footer-divider{width:100%;height:1px;background:rgba(255,255,255,0.07);margin-bottom:24px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-family:var(--bauhaus);font-size:9px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--footer-text-2)}
+.footer-back a{font-family:var(--sf);font-size:13px;font-weight:300;color:var(--steel-light);text-decoration:none;transition:color 0.25s ease}
+.footer-back a:hover{color:white}
+
+/* Bauhaus circle in footer */
+.footer-bauhaus{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:0.04;pointer-events:none}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:0.06s}.stagger-2{transition-delay:0.14s}.stagger-3{transition-delay:0.22s}.stagger-4{transition-delay:0.3s}.stagger-5{transition-delay:0.38s}
+.project-card{transform-style:preserve-3d;perspective:800px}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+@media(max-width:1024px){.projects-grid{grid-template-columns:repeat(2,1fr)}.about-highlights{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .nav-links{display:none}.mobile-toggle{display:block}
+  .nav-links.mobile-open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg-nav);backdrop-filter:blur(24px);padding:20px 32px;gap:16px;border-bottom:1px solid var(--border)}
+  .container{padding:0 24px}.nav-inner{padding:0 24px}
+  .hero-content{padding:48px 0}.hero-bottom{grid-template-columns:1fr;gap:32px}
+  .projects-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-image-wrap{max-width:280px;margin:0 auto}
+  .fun-facts{grid-template-columns:1fr;gap:8px}
+  .form-row{grid-template-columns:1fr}
+  .about-highlights{grid-template-columns:repeat(2,1fr);gap:16px}
+  .hero-scroll{display:none}.hero-geo,.about-geo{display:none}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .footer-inner{padding:48px 24px 32px}
+  .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- Bauhaus strip top -->
+<div class="bauhaus-strip" style="position:fixed;top:0;left:0;right:0;z-index:1001"><span class="bs-1"></span><span class="bs-2"></span><span class="bs-3"></span><span class="bs-4"></span></div>
+
+<nav role="navigation" aria-label="Navegación principal" style="top:4px">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo" aria-label="Yariel Marante — Inicio"><span class="nav-logo-word">Yari</span><span class="nav-logo-bar"></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+      <li><a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+      <li><a href="#sobre-mi" data-es="Sobre mí" data-en="About">Sobre mí</a></li>
+      <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="nav-btn" id="langToggle" aria-label="Cambiar idioma" onclick="toggleLanguage()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg><span id="langLabel">EN</span></button>
+      <button class="nav-btn" id="themeToggle" aria-label="Cambiar tema" onclick="toggleTheme()"><svg id="iconSun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menú" onclick="toggleMobile()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" style="padding-top:68px">
+  <svg class="hero-geo" width="520" height="520" viewBox="0 0 520 520"><circle cx="260" cy="260" r="240" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="260" cy="260" r="160" fill="none" stroke="currentColor" stroke-width="0.8"/><circle cx="260" cy="260" r="80" fill="none" stroke="#2D4A6B" stroke-width="0.8"/><path d="M260 20 A240 240 0 0 1 500 260 L260 260 Z" fill="#2D4A6B" opacity="0.15"/><circle cx="260" cy="260" r="24" fill="none" stroke="#4A7AA0" stroke-width="0.6"/><circle cx="260" cy="260" r="6" fill="#2D4A6B" opacity="0.3"/></svg>
+  <div class="container">
+    <div class="hero-content">
+      <div class="lbl fade-up" data-es="Portfolio 2025" data-en="Portfolio 2025">Portfolio 2025</div>
+      <h1 class="hero-name fade-up stagger-1" data-es="Yariel<br><span class='name-accent'>Marante.</span>" data-en="Yariel<br><span class='name-accent'>Marante.</span>">Yariel<br><span class="name-accent">Marante.</span></h1>
+      <div class="hero-meta fade-up stagger-2">
+        <span class="hero-role" data-es="<span class='blue-dot'></span>Product Designer" data-en="<span class='blue-dot'></span>Product Designer"><span class="blue-dot"></span>Product Designer</span>
+        <span class="hero-avail" data-es="<span class='avail-dot'></span> Disponible · Madrid / Remoto" data-en="<span class='avail-dot'></span> Available · Madrid / Remote"><span class="avail-dot"></span> Disponible · Madrid / Remoto</span>
+      </div>
+      <div class="hero-services fade-up stagger-3">
+        <span class="service-pill">UX Research</span>
+        <span class="service-pill">UI Design</span>
+        <span class="service-pill">Design Systems</span>
+        <span class="service-pill">Branding</span>
+      </div>
+      <div class="hero-bottom fade-up stagger-4">
+        <div class="hero-tagline">
+          <span data-es="Empecé diseñando para los ojos." data-en="I started designing for the eyes.">Empecé diseñando<br>para los ojos.</span><br>
+          <span class="accent" data-es="Ahora diseño para las personas." data-en="Now I design for people.">Ahora diseño para<br>las personas.</span>
+        </div>
+        <div class="hero-right">
+          <p class="hero-description" data-es="Criterio visual, pensamiento UX y sentido común. Productos digitales que se entienden y se usan. Sin fricción." data-en="Visual criteria, UX thinking and common sense. Digital products that are understood and used. Without friction.">Criterio visual, pensamiento UX y sentido común. Productos digitales que se entienden y se usan. Sin fricción.</p>
+          <a href="#proyectos" class="hero-cta" data-es="Ver proyectos" data-en="View projects"><span>Ver proyectos</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proyectos">
+  <div class="container">
+    <div class="fade-up"><span class="section-accent"></span><div class="lbl" data-es="Proyectos" data-en="Projects">Proyectos</div><h2 class="projects-title" data-es="Diseños que funcionan. Punto." data-en="Designs that work. Period.">Diseños que<br>funcionan. Punto.</h2></div>
+    <div class="projects-grid">
+      <a class="project-card fade-up stagger-1" href="lumix-case-study.html" aria-label="Lumix"><div class="project-image-wrap"><img src="" alt="Lumix" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="placeholder-icon" style="display:flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div><div class="project-info"><span class="project-number">01 — Case Study</span><h3 class="project-name" data-es="Lumix" data-en="Lumix">Lumix</h3><p class="project-desc" data-es="App de bienestar financiero. Research completo, behavioral design y UI en high-fidelity. Listo para implementar." data-en="Financial wellness app. Full research, behavioral design and high-fidelity UI. Ready to implement.">App de bienestar financiero. Research completo, behavioral design y UI en high-fidelity. Listo para implementar.</p><div class="project-tags"><span class="project-tag">UX Research</span><span class="project-tag">UI Design</span><span class="project-tag">Fintech</span></div><span class="project-link" data-es="Ver caso de estudio" data-en="View case study">Ver caso de estudio <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div></a>
+      <a class="project-card fade-up stagger-2" href="#" aria-label="Proyecto 2"><div class="project-image-wrap"><img src="" alt="Proyecto 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="placeholder-icon" style="display:flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div><div class="project-info"><span class="project-number">02 — Proyecto</span><h3 class="project-name" data-es="Nombre del proyecto" data-en="Project Name">Nombre del proyecto</h3><p class="project-desc" data-es="El brief era complicado. El resultado, no. Sistema de diseño completo desde cero con componentes reutilizables." data-en="The brief was complicated. The result wasn't. Complete design system from scratch with reusable components.">El brief era complicado. El resultado, no. Sistema de diseño completo desde cero con componentes reutilizables.</p><div class="project-tags"><span class="project-tag">Design System</span><span class="project-tag">Prototyping</span><span class="project-tag">UX/UI</span></div><span class="project-link" data-es="Ver caso de estudio" data-en="View case study">Ver caso de estudio <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div></a>
+      <a class="project-card fade-up stagger-3" href="#" aria-label="Proyecto 3"><div class="project-image-wrap"><img src="" alt="Proyecto 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="placeholder-icon" style="display:flex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div><div class="project-info"><span class="project-number">03 — Proyecto</span><h3 class="project-name" data-es="Nombre del proyecto" data-en="Project Name">Nombre del proyecto</h3><p class="project-desc" data-es="Rediseño completo con foco en usabilidad. Menos clics, más conversiones. Sin revisiones infinitas." data-en="Complete redesign focused on usability. Fewer clicks, more conversions. No endless revisions.">Rediseño completo con foco en usabilidad. Menos clics, más conversiones. Sin revisiones infinitas.</p><div class="project-tags"><span class="project-tag">User Testing</span><span class="project-tag">Mobile</span><span class="project-tag">Wireframing</span></div><span class="project-link" data-es="Ver caso de estudio" data-en="View case study">Ver caso de estudio <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div></a>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="fade-up stagger-4"><a href="proyectos.html" class="hero-cta" data-es="Ver todos los proyectos" data-en="View all projects" style="display:inline-flex"><span>Ver todos los proyectos</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre-mi">
+  <svg class="about-geo" width="400" height="400" viewBox="0 0 400 400"><circle cx="200" cy="200" r="180" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="200" cy="200" r="120" fill="none" stroke="#2D4A6B" stroke-width="0.8"/><path d="M200 20 A180 180 0 0 1 380 200 L200 200 Z" fill="#4A7AA0" opacity="0.12"/><circle cx="200" cy="200" r="50" fill="none" stroke="#4A7AA0" stroke-width="0.6"/></svg>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap fade-up">
+        <img src="DSC03135.jpg" alt="Yariel Marante">
+      </div>
+      <div class="fade-up stagger-1">
+        <span class="section-accent"></span>
+        <div class="lbl" data-es="Sobre mí" data-en="About me">Sobre mí</div>
+        <h2 class="about-title" data-es="Yariel Marante." data-en="Yariel Marante.">Yariel Marante.</h2>
+        <p class="about-text" data-es="Diseñador gráfico de formación, product designer por convicción. Estudié comunicación visual en La Habana y Madrid. Después vino el branding, el editorial, el marketing. Pero faltaba algo: <em>entender para quién diseñaba.</em>" data-en="Graphic designer by training, product designer by conviction. I studied visual communication in Havana and Madrid. Then came branding, editorial, marketing. But something was missing: <em>understanding who I was designing for.</em>">Diseñador gráfico de formación, product designer por convicción. Estudié comunicación visual en La Habana y Madrid. Después vino el branding, el editorial, el marketing. Pero faltaba algo: <em>entender para quién diseñaba.</em></p>
+        <p class="about-text" data-es="Ahora hago UX/UI. Paso del research al prototipo y del prototipo a la interfaz final. Figma, sistemas de diseño, testing. <em>Lo que haga falta para que funcione.</em>" data-en="Now I do UX/UI. From research to prototype and from prototype to final interface. Figma, design systems, testing. <em>Whatever it takes to make it work.</em>">Ahora hago UX/UI. Paso del research al prototipo y del prototipo a la interfaz final. Figma, sistemas de diseño, testing. <em>Lo que haga falta para que funcione.</em></p>
+        <p class="about-text" data-es="Soy cubano, llevo años en España. Crecer entre culturas me enseñó a leer contextos, adaptarme rápido y diseñar para personas reales. <em>No para usuarios genéricos.</em>" data-en="I'm Cuban, I've been living in Spain for years. Growing up between cultures taught me to read contexts, adapt fast and design for real people. <em>Not generic users.</em>">Soy cubano, llevo años en España. Crecer entre culturas me enseñó a leer contextos, adaptarme rápido y diseñar para personas reales. <em>No para usuarios genéricos.</em></p>
+
+        <div class="fun-facts">
+          <div class="fun-fact">
+            <div class="fun-fact-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="var(--steel-mid)" stroke-width="2"/><circle cx="24" cy="24" r="10" fill="var(--steel-mid)" opacity="0.2"/><path d="M24 2 A22 22 0 0 1 46 24 L24 24 Z" fill="var(--steel)" opacity="0.35"/><circle cx="24" cy="24" r="5" fill="var(--steel)"/></svg></div>
+            <div class="fun-fact-title" data-es="Fotógrafo secreto" data-en="Secret photographer">Fotógrafo secreto</div>
+            <div class="fun-fact-desc" data-es="Creo contenido y me creo modelo. Mi IG es mi segundo portfolio." data-en="I create content and think I'm a model. My IG is my second portfolio.">Creo contenido y me creo modelo. Mi IG es mi segundo portfolio.</div>
+          </div>
+          <div class="fun-fact">
+            <div class="fun-fact-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="40" height="40" stroke="var(--steel-mid)" stroke-width="2"/><rect x="14" y="14" width="20" height="20" fill="var(--steel-mid)" opacity="0.2"/><rect x="4" y="4" width="20" height="20" fill="var(--steel)" opacity="0.35"/><rect x="20" y="20" width="8" height="8" fill="var(--steel)"/></svg></div>
+            <div class="fun-fact-title" data-es="Cocinillas oficial" data-en="Kitchen boss">Cocinillas oficial</div>
+            <div class="fun-fact-desc" data-es="Mejor que yo solo cocina mi madre. Y a veces ni eso ;)" data-en="Only my mom cooks better. And sometimes not even that ;)">Mejor que yo solo cocina mi madre. Y a veces ni eso ;)</div>
+          </div>
+          <div class="fun-fact">
+            <div class="fun-fact-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="24,2 46,38 2,38" stroke="var(--steel-mid)" stroke-width="2" fill="none"/><polygon points="24,14 36,34 12,34" fill="var(--steel-mid)" opacity="0.2"/><polygon points="24,2 35,22 24,22" fill="var(--steel)" opacity="0.35"/><circle cx="24" cy="28" r="4" fill="var(--steel)"/></svg></div>
+            <div class="fun-fact-title" data-es="Viajero crónico" data-en="Chronic traveler">Viajero crónico</div>
+            <div class="fun-fact-desc" data-es="Cada destino es un contexto nuevo. Diseño mejor cuando conozco más." data-en="Each destination is a new context. I design better when I know more.">Cada destino es un contexto nuevo. Diseño mejor cuando conozco más.</div>
+          </div>
+        </div>
+
+        <div class="about-highlights">
+          <div><div class="highlight-number">+5</div><div class="highlight-label" data-es="Años diseñando" data-en="Years designing">Años diseñando</div></div>
+          <div><div class="highlight-number">ES/EN</div><div class="highlight-label" data-es="Bilingüe" data-en="Bilingual">Bilingüe</div></div>
+          <div><div class="highlight-number">UX/UI</div><div class="highlight-label" data-es="Ironhack 2026" data-en="Ironhack 2026">Ironhack 2026</div></div>
+          <div><div class="highlight-number">Figma</div><div class="highlight-label" data-es="Herramienta principal" data-en="Main tool">Herramienta principal</div></div>
+        </div>
+
+        <div class="cv-wrap" id="cvWrap">
+          <button class="cv-btn" onclick="document.getElementById('cvWrap').classList.toggle('open')"><span data-es="Descargar CV" data-en="Download CV">Descargar CV</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="cv-dropdown">
+            <a href="CV_Yariel_Marante_Rediseno_2026.pdf" download><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CV en Español (PDF)</span></a>
+            <a href="#" download><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>CV in English (PDF)</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-wrapper">
+      <span class="section-accent fade-up" style="margin:0 auto 16px"></span>
+      <div class="lbl fade-up" data-es="Contacto" data-en="Contact">Contacto</div>
+      <h2 class="contact-title fade-up stagger-1" data-es="Hablemos." data-en="Let's talk.">Hablemos.</h2>
+      <p class="contact-subtitle fade-up stagger-2" data-es="¿Tienes un proyecto en mente? Escríbeme. Sin compromiso, sin plantillas. Directo al grano." data-en="Have a project in mind? Write me. No strings, no templates. Straight to the point.">¿Tienes un proyecto en mente? Escríbeme. Sin compromiso, sin plantillas. Directo al grano.</p>
+      <form class="contact-form fade-up stagger-3" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row"><div class="form-group"><label for="name" data-es="Nombre" data-en="Name">Nombre</label><input type="text" id="name" name="name" placeholder="Tu nombre" data-es-placeholder="Tu nombre" data-en-placeholder="Your name" required></div><div class="form-group"><label for="email" data-es="Email" data-en="Email">Email</label><input type="email" id="email" name="email" placeholder="tu@email.com" required></div></div>
+        <div class="form-group"><label for="message" data-es="Mensaje" data-en="Message">Mensaje</label><textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." data-es-placeholder="Cuéntame sobre tu proyecto..." data-en-placeholder="Tell me about your project..." required></textarea></div>
+        <button type="submit" class="form-submit"><span data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- UNIFIED FOOTER -->
+<footer>
+  <div class="footer-strip"><span class="fs-1"></span><span class="fs-2"></span><span class="fs-3"></span><span class="fs-4"></span></div>
+  <svg class="footer-bauhaus" width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="130" fill="none" stroke="white" stroke-width="0.8"/><circle cx="150" cy="150" r="80" fill="none" stroke="white" stroke-width="0.5"/><path d="M150 20 A130 130 0 0 1 280 150 L150 150 Z" fill="#4A7AA0" opacity="0.08"/></svg>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo-word">Yari</span><span class="footer-logo-bar"></span>
+        <p class="footer-tagline" data-es="Diseño para empresas que quieren ir en serio. No para las que quieren verse bien en el comité." data-en="I design for companies that mean business. Not for those that just want to look good in the meeting.">Diseño para empresas que quieren ir en serio. No para las que quieren verse bien en el comité.</p>
+      </div>
+      <div>
+        <div class="footer-col-title" data-es="Contacto" data-en="Contact">Contacto</div>
+        <a href="mailto:maranteyariel@gmail.com" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>maranteyariel@gmail.com</a>
+        <a href="tel:+34644056380" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+34 644 05 63 80</a>
+      </div>
+      <div>
+        <div class="footer-col-title" data-es="Redes" data-en="Social">Redes</div>
+        <a href="https://www.linkedin.com/in/yariel-marante-arias-600226215" target="_blank" rel="noopener" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        <a href="https://www.behance.net/yarielmarante" target="_blank" rel="noopener" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M7.5 11c1.38 0 2.5-.67 2.5-2.25S8.88 6.5 7.13 6.5H2v11h5.5c1.93 0 3.5-1.07 3.5-3.13S9.43 11 7.5 11zM4 8h3c.83 0 1.5.37 1.5 1.25S7.83 10.5 7 10.5H4V8zm3.25 8H4v-3h3.25c.97 0 1.75.5 1.75 1.5S8.22 16 7.25 16zM16.5 6.5c-3.04 0-5 2.12-5 5s1.96 5 5 5c2.37 0 3.87-1.22 4.5-3h-2.16c-.36.64-1.17 1.15-2.34 1.15-1.68 0-2.75-1.06-2.88-2.65h7.5c.04-.33.05-.52.05-.75 0-2.88-1.97-4.75-4.67-4.75zm-2.75 4c.19-1.3 1.19-2.25 2.63-2.25 1.38 0 2.38.88 2.56 2.25h-5.19zM15 4h5v1.5h-5V4z"/></svg>Behance</a>
+        <a href="https://medium.com/@maranteyariel" target="_blank" rel="noopener" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zm2.04 0c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75c.66 0 1.19 2.58 1.19 5.75z"/></svg>Medium</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Yariel Marante — <span data-es="Todos los derechos reservados" data-en="All rights reserved">Todos los derechos reservados</span></span>
+      <div class="footer-back"><a href="#inicio" data-es="Volver arriba ↑" data-en="Back to top ↑">Volver arriba ↑</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+var currentLang='es';
+function toggleLanguage(){
+  currentLang=currentLang==='es'?'en':'es';
+  document.getElementById('langLabel').textContent=currentLang==='es'?'EN':'ES';
+  document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    var text=el.getAttribute('data-'+currentLang);if(!text)return;
+    if(el.querySelector('span')&&!el.classList.contains('hero-name')&&!el.classList.contains('hero-role')&&!el.classList.contains('hero-avail')){el.querySelector('span').textContent=text}
+    else if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){}
+    else{el.innerHTML=text}
+  });
+  document.querySelectorAll('[data-es-placeholder]').forEach(function(el){var ph=el.getAttribute('data-'+currentLang+'-placeholder');if(ph)el.placeholder=ph});
+}
+function toggleTheme(){
+  var html=document.documentElement;var isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('iconSun').style.display=isDark?'block':'none';
+  document.getElementById('iconMoon').style.display=isDark?'none':'block';
+  localStorage.setItem('ym-theme',isDark?'light':'dark');
+}
+(function(){var saved=localStorage.getItem('ym-theme');if(saved==='dark'||(!saved&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');document.getElementById('iconSun').style.display='none';document.getElementById('iconMoon').style.display='block'}})();
+function toggleMobile(){document.getElementById('navLinks').classList.toggle('mobile-open')}
+document.querySelectorAll('.nav-links a').forEach(function(link){link.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('mobile-open')})});
+document.addEventListener('click',function(e){var wrap=document.getElementById('cvWrap');if(wrap&&!wrap.contains(e.target)){wrap.classList.remove('open')}});
+function handleSubmit(e){e.preventDefault();var n=document.getElementById('name').value;var em=document.getElementById('email').value;var msg=document.getElementById('message').value;var subject=encodeURIComponent('Contacto portfolio — '+n);var body=encodeURIComponent('Nombre: '+n+'\nEmail: '+em+'\n\nMensaje:\n'+msg);window.location.href='mailto:maranteyariel@gmail.com?subject='+subject+'&body='+body}
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-up').forEach(function(el){observer.observe(el)});
+</script>
+</body>
+</html>
